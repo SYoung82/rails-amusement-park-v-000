@@ -4,11 +4,11 @@ class Ride < ActiveRecord::Base
 
   def take_ride
     if !enough_tickets? && !tall_enough?
-      return "Sorry. You do not have enough tickets the #{attraction.name}. You are not tall enough to ride the #{attraction.name}."
+      return "Sorry. You do not have enough tickets to ride the #{attraction.name}. You are not tall enough to ride the #{attraction.name}."
     end
 
     if !enough_tickets?
-      return "Sorry. You do not have enough tickets the #{self.attraction.name}."
+      return "Sorry. You do not have enough tickets to ride the #{self.attraction.name}."
     end
 
     if !tall_enough?
@@ -16,6 +16,7 @@ class Ride < ActiveRecord::Base
     end
 
     get_on_ride
+    return "Thanks for riding the #{self.attraction.name}!"
   end
 
   def enough_tickets?
@@ -33,4 +34,5 @@ class Ride < ActiveRecord::Base
     self.user.save
     self.attraction.save
   end
+
 end
